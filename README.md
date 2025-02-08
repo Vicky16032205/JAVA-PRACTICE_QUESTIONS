@@ -37,17 +37,6 @@ I will be using the Java programming languages for the solutions.
 
 ---
 
-## How to Use
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Vicky16032205/dsa-practice.git
-   ```
-
-2. Navigate to the topic folder to find the solution to a specific problem.
-
-3. Each solution contains a brief description of the problem and an explanation of the approach in code comments.
-
----
 
 ## Updates
 I will continuously update this repository as I solve more problems. If you find an error in any solution or have suggestions for improvement, feel free to open an issue or submit a pull request.
