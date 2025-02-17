@@ -32,7 +32,7 @@ The repository is organized into folders based on topics. Each folder contains s
 - **PATTERN**: Coding problems involving pattern printing and design techniques.
 - **Recursion**: Solutions to recursion-based problems and techniques.
 - **Sorting_Algorithms**: Implementations of popular sorting algorithms and related problems.
-- **Stack**: Implementation of stack operations (push, pop, peek, display, size, and isEmpty) using arrays.
+- **Stack**: Implementation of stack operations (push, pop, peek, display, size, and isEmpty) using arrays and Linked Lists . Also interview related problems are solved and updated directly into the repository.
 
 ---
 
@@ -54,7 +54,7 @@ Contributions are welcome! If you have optimized or alternative solutions, feel 
 
 1. Fork the repository.
 2. Add your solutions.
-3. Create a pull request with details of your contribution.
+3. Create pull request with details of your contribution.
 
 ---
 
