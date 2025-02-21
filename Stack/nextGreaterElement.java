@@ -28,10 +28,6 @@ public class nextGreaterElement {
                 res[i] = st.peek();
             }
 
-            else{
-                res[i] = -1;
-            }
-
             st.push(arr[i]);
         }
 
