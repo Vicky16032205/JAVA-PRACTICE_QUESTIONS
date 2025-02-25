@@ -5,7 +5,7 @@ import java.util.Stack;
 public class sliding_windows_maximum {
     public static void main(String[] args) {
         int[] arr = {1,3,-1,-3,5,3,6,7};
-        int k = 1;
+        int k = 3;
         sliding_window_brute(arr , k); // brute force approach
 
         sliding_window_slight_good(arr , k); // good approach then brute force 
