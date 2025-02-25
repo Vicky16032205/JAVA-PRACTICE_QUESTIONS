@@ -28,6 +28,7 @@ public class sliding_windows_maximum {
         for(int i=0;i<res.length;i++){
             System.out.print(res[i] + " ");
         }
+        System.out.println();
     }
 
     public static void sliding_window_slight_good(int[] arr , int k){
@@ -56,6 +57,7 @@ public class sliding_windows_maximum {
         for(int i=0;i<ans.length;i++){
             System.out.print(ans[i] + " ");
         }
+        System.out.println();
     }
 
 
