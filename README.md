@@ -19,7 +19,8 @@ The repository is organized into folders based on topics. Each folder contains s
 ├── PATTERN
 ├── Recursion
 ├── Sorting_Algorithms
-└── Stack
+├── Stack
+└── trees
 ```
 
 ### Folder Descriptions
@@ -33,6 +34,7 @@ The repository is organized into folders based on topics. Each folder contains s
 - **Recursion**: Solutions to recursion-based problems and techniques.
 - **Sorting_Algorithms**: Implementations of popular sorting algorithms and related problems.
 - **Stack**: Implementation of stack operations (push, pop, peek, display, size, and isEmpty) using arrays and Linked Lists . Also interview related problems are solved and updated directly into the repository.
+- **trees**: Implementations of trees and questions related to Binary Search Trees will be find here.
 
 ---
 
