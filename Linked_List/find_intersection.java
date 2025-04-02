@@ -31,7 +31,7 @@ public class find_intersection {
         Node c1 = new Node(67);
         Node d1 = new Node(21);
         Node e1 = new Node(9);
-        Node f1 = new Node(87);
+        Node f1 = new Node(15);
         Node g1 = new Node(52);
         Node h1 = new Node(7);
         Node i1 = new Node(23);
