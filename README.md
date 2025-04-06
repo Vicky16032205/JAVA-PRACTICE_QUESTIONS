@@ -10,7 +10,6 @@ The repository is organized into folders based on topics. Each folder contains s
 
 ```
 .
-├── .vscode
 ├── ArrayList
 ├── Arrays
 ├── DOUBLE_AND_CIRCULAR_LL
