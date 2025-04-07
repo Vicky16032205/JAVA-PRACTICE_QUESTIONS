@@ -23,6 +23,8 @@ public class findSuccessor {
         findSuccessor level = new findSuccessor(sc);
         System.out.print("\nNext Successor of given key is : ");
         level.successor(14);
+        System.out.print("\nprinting in alternate reverse order : ");
+        level.alternate();
     }
 
     public findSuccessor(Scanner sc){
@@ -59,12 +61,15 @@ public class findSuccessor {
         return node;
     }
 
+
+
+    // printing the succcessor function implemented here.
     public void successor(int n){
         successor(n, this.root);
     }
     private void successor(int key , Node root){
         Queue<Node> queue = new LinkedList<>();
-
+        boolean flag = false;
         queue.add(root);
 
         while(!queue.isEmpty()){
@@ -79,9 +84,70 @@ public class findSuccessor {
             }
 
             if(curr.val == key){
+                flag = true;
                 break;
             }
         }
-        System.out.println(queue.peek().val);
+        if(flag == false){
+            System.out.println("No element found with given key value.");
+        }
+        else
+            System.out.println(queue.peek().val);
+    }
+
+
+
+
+
+    // printing in alternate reverse order.
+    public void alternate(){
+        alternate(this.root);
+    }
+    private void alternate(Node root){
+        if(root == null) return;
+
+        List<List<Integer>> result = new ArrayList<>();
+
+        Deque<Node> queue = new LinkedList<>();
+        queue.add(root);
+        boolean reverse = false;
+        while(!queue.isEmpty()) {
+            List<Integer> curr = new ArrayList<>();
+            int lnth = queue.size();
+
+            for(int i=0;i<lnth;i++){
+                if(!reverse){
+                    Node current = queue.pollFirst();
+                    curr.add(current.val);
+                    if(current.left != null){
+                        queue.addLast(current.left);
+                    }
+                    if(current.right != null){
+                        queue.addLast(current.right);
+                    }
+                }
+                else{
+                    Node current = queue.pollLast();
+                    curr.add(current.val);
+                    if(current.right != null){
+                        queue.addFirst(current.right);
+                    }
+                    if(current.left != null){
+                        queue.addFirst(current.left);
+                    }
+                }
+            }
+            result.add(curr);
+            reverse = !reverse;
+        }
+
+
+        for(int i=0;i<result.size();i++){
+            System.out.print(result.get(i)+" ");
+        }
+
+
+        // In this problem we used DEQUE for solving it. We choose deque because it helped us to make changes in each order traversal
+        // as this makes it possible to add or remove from front or back of the Queue and also add in front or back of it.
     }
 }
