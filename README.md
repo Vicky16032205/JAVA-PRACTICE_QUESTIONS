@@ -14,6 +14,7 @@ The repository is organized into folders based on topics. Each folder contains s
 ├── Arrays
 ├── DOUBLE_AND_CIRCULAR_LL
 ├── GFG_160_Days_Problems
+├── Graphs
 ├── Linked_List
 ├── PATTERN
 ├── Recursion
