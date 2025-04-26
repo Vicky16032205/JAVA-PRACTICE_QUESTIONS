@@ -60,6 +60,8 @@ public class DFS {
     // main function having the graph initialized and making of it, having the visited boolean array to keep count of how many nodes been visited
     // then calling of the vertices one taken as source node or make a loop to iterate over all the vertices if all vertices are not connected and
     // some of them are broken aka "Disconnected Components."
+
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         int v = 7;
         ArrayList<Edge>[] graph = new ArrayList[v];
