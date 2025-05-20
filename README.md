@@ -18,6 +18,7 @@ The repository is organized into folders based on topics. Each folder contains s
 ├── Linked_List
 ├── OOPS
 ├── PATTERN
+├── Queue
 ├── Recursion
 ├── Sorting_Algorithms
 ├── Stack
