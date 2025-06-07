@@ -12,7 +12,7 @@ public class originalGFG_RatMaze {
         ArrayList<String> res = new ArrayList<>();
         boolean[][] isValid = new boolean[maze.length][maze[0].length];
 
-        printPaths(0,0,maze.length-1,maze[0].length-1,res,"",maze,isValid);
+        printPaths(0,0,maze.length-1,maze[0].length-1,res,"",maze,isValid);  // space complexity : O(N*M), not good.
 
         for(int i=0;i<res.size();i++){
             System.out.print(res.get(i)+" ");
