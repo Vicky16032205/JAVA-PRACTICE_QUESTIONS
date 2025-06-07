@@ -1,6 +1,6 @@
 package BackTracking;
 
-public class MazePath {
+public class MazePathI {
     public static void main(String[] args) {
         int row = 4;
         int col = 6;
