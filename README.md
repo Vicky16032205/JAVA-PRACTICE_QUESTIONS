@@ -12,6 +12,7 @@ The repository is organized into folders based on topics. Each folder contains s
 .
 ├── ArrayList
 ├── Arrays
+├── BackTracking
 ├── DOUBLE_AND_CIRCULAR_LL
 ├── GFG_160_Days_Problems
 ├── Graphs
@@ -29,6 +30,7 @@ The repository is organized into folders based on topics. Each folder contains s
 
 - **ArrayList**: Problems and solutions related to ArrayList operations and implementations.
 - **Arrays**: Solutions for array-based problems, including common operations and optimizations.
+- **BackTracking**: Learning and solving backtracking questions.
 - **DOUBLE_AND_CIRCULAR_LL**: Implementation and problems related to doubly linked lists and circular linked lists.
 - **GFG_160_Days_Problems**: Solutions for the "GeeksforGeeks 160 Days of DSA Challenge."
 - **Graphs**: Will be implementing graphs problems and code for whatever new I would learn in this topic.
