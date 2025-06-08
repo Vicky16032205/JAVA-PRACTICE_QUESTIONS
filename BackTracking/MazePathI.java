@@ -1,6 +1,7 @@
 package BackTracking;
 
 public class MazePathI {
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
         int row = 4;
         int col = 6;

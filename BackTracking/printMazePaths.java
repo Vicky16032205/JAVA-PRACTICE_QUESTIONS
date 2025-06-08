@@ -3,6 +3,7 @@ package BackTracking;
 import java.util.ArrayList;
 
 public class printMazePaths {
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
         int row = 3;
         int col = 3;
