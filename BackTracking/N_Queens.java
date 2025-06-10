@@ -2,14 +2,18 @@ package BackTracking;
 
 public class N_Queens {
     public static void main(String[] args) {
-        int n = 6;
+        int n = 4;
         char[][] board = new char[n][n];
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
                 board[i][j] = 'X';
             }
         }
+        long start = System.currentTimeMillis();
         nqueens(board,0);
+        long end = System.currentTimeMillis();
+
+        System.out.println("Time taken : "+(end-start)+"ms");
     }
 
     private static void nqueens(char[][] board, int row) {
