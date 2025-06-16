@@ -14,6 +14,7 @@ The repository is organized into folders based on topics. Each folder contains s
 ├── Arrays
 ├── BackTracking
 ├── DOUBLE_AND_CIRCULAR_LL
+├── DP
 ├── GFG_160_Days_Problems
 ├── Graphs
 ├── Linked_List
@@ -32,6 +33,7 @@ The repository is organized into folders based on topics. Each folder contains s
 - **Arrays**: Solutions for array-based problems, including common operations and optimizations.
 - **BackTracking**: Learning and solving backtracking questions.
 - **DOUBLE_AND_CIRCULAR_LL**: Implementation and problems related to doubly linked lists and circular linked lists.
+- **DP**: Learn Memoization and tabular method to reduce the calculation time for reappearing sub-problems.
 - **GFG_160_Days_Problems**: Solutions for the "GeeksforGeeks 160 Days of DSA Challenge."
 - **Graphs**: Will be implementing graphs problems and code for whatever new I would learn in this topic.
 - **Linked_List**: Implementation of singly linked lists and solutions to related problems.
