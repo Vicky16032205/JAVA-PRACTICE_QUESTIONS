@@ -8,9 +8,9 @@ public class K_frog_jumps {
         int[] arr = {30, 20, 50, 10, 40};
         System.out.println("Using Recursion : " + minCostRecursive(arr,arr.length-1));
 
-        // int[] dp = new int[arr.length+1];
-        // Arrays.fill(dp,-1);
-        // System.out.println("Using Memoization : " + minCostDP(arr,arr.length-1,dp));
+        int[] dp = new int[arr.length+1];
+        Arrays.fill(dp,-1);
+        System.out.println("Using Memoization : " + minCostDP(arr,arr.length-1,dp));
 
         // int[] dp2 = new int[arr.length];
         // System.out.println("Using Tabulation : " + minCostTabulation(arr , arr.length-1, dp2));
@@ -29,19 +29,19 @@ public class K_frog_jumps {
         return min;
     }
 
-    // public static int minCostDP(int[] height, int n, int[] dp){
-    //     if(n==0) return 0;
-    //     if(dp[n] != -1) return dp[n];
+    public static int minCostDP(int[] height, int n, int[] dp){
+        if(n==0) return 0;
+        if(dp[n] != -1) return dp[n];
 
-    //     int min = Integer.MAX_VALUE;
-    //     for(int j=1;j<=k;j++){
-    //         if(n-j>=0){
-    //             int mini = minCostDP(height, n-j, dp) + Math.abs(height[n] - height[n-j]);
-    //             min = Math.min(min, mini);
-    //         }
-    //     }
-    //     return dp[n] = min;
-    // }
+        int min = Integer.MAX_VALUE;
+        for(int j=1;j<=k;j++){
+            if(n-j>=0){
+                int mini = minCostDP(height, n-j, dp) + Math.abs(height[n] - height[n-j]);
+                min = Math.min(min, mini);
+            }
+        }
+        return dp[n] = min;
+    }
 
     // public static int minCostTabulation(int[] height, int n, int[] dp){
     //     dp[0] = 0;
