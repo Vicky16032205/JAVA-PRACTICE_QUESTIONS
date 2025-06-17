@@ -8,6 +8,26 @@ public class frog_jump {
 
         result = minCost2(height);
         System.out.println("Minimum cost using memoization: " + result);
+
+        result = minCostOptimize(height);
+        System.out.println("Minimum cost space optimized: " + result);
+    }
+
+    private static int minCostOptimize(int[] height) {
+        int n = height.length;
+        int prev = 0;
+        int prev2 = 0;
+
+        for(int i=1;i<n;i++){
+            int onejump = prev + Math.abs(height[i] - height[i-1]);
+            int twojump = Integer.MAX_VALUE;
+            if(i>1) twojump = prev2 + Math.abs(height[i] - height[i-2]);
+
+            int curr = Math.min(onejump, twojump);
+            prev2 = prev;
+            prev = curr;
+        }
+        return prev;
     }
 
     public static int minCost(int[] height){
