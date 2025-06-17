@@ -12,8 +12,8 @@ public class K_frog_jumps {
         Arrays.fill(dp,-1);
         System.out.println("Using Memoization : " + minCostDP(arr,arr.length-1,dp));
 
-        // int[] dp2 = new int[arr.length];
-        // System.out.println("Using Tabulation : " + minCostTabulation(arr , arr.length-1, dp2));
+        int[] dp2 = new int[arr.length];
+        System.out.println("Using Tabulation : " + minCostTabulation(arr , arr.length-1, dp2));
         sc.close();
     }
 
@@ -43,19 +43,19 @@ public class K_frog_jumps {
         return dp[n] = min;
     }
 
-    // public static int minCostTabulation(int[] height, int n, int[] dp){
-    //     dp[0] = 0;
+    public static int minCostTabulation(int[] height, int n, int[] dp){
+        dp[0] = 0;
 
-    //     for(int i=1;i<=n;i++){
-    //         int cost = Integer.MAX_VALUE;
-    //         for(int j=1;j<=k;j++){
-    //             if(i-j>=0){
-    //                 int jump = dp[i-j] + Math.abs(height[i] - height[i-j]);
-    //                 cost = Math.min(cost, jump);
-    //             }
-    //         }
-    //         dp[i] = cost;
-    //     }
-    //     return dp[n];
-    // }
+        for(int i=1;i<=n;i++){
+            int cost = Integer.MAX_VALUE;
+            for(int j=1;j<=k;j++){
+                if(i-j>=0){
+                    int jump = dp[i-j] + Math.abs(height[i] - height[i-j]);
+                    cost = Math.min(cost, jump);
+                }
+            }
+            dp[i] = cost;
+        }
+        return dp[n];
+    }
 }
