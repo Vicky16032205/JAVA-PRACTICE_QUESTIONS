@@ -2,14 +2,14 @@ package DP;
 
 public class max_non_adj_sum {
     public static void main(String[] args) {
-        int[] arr = {5, 5, 10, 100, 10, 5};
+        int[] arr = {316, 30875, 28056, 29256, 6771, 7084, 5506, 12147, 2937};
         System.out.println("Recursion answer: " + findMaxSum(arr,arr.length-1));
 
         int[] dp = new int[arr.length+1];
         System.out.println("Memoization answer: " + MemoFindMaxSum(arr,arr.length-1,dp));
 
-        // int[] dp2 = new int[arr.length];
-        // System.out.println("Memoization answer: " + TabuFindMaxSum(arr,arr.length-1,dp2));
+        int[] dp2 = new int[arr.length];
+        System.out.println("Memoization answer: " + TabuFindMaxSum(arr,arr.length-1,dp2));
     }
 
     public static int findMaxSum(int[] arr, int n){
@@ -33,8 +33,15 @@ public class max_non_adj_sum {
         return dp[n] = Math.max(pick, non_pick);
     }
 
-    // public static int TabuFindMaxSum(int[] arr, int n, int[] dp){
-        
-    //     return 0;
-    // }
+    public static int TabuFindMaxSum(int[] arr, int n, int[] dp){
+        dp[0] = arr[0];
+
+        for(int i=1;i<=n;i++){
+            int pick = arr[i];
+            if(i>1) pick += dp[i-2];
+            int not_pick = 0 + dp[i-1];
+            dp[i] = Math.max(pick, not_pick);
+        }
+        return dp[n];
+    }
 }
