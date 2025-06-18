@@ -51,7 +51,7 @@ public class max_non_adj_sum {
         int prev = arr[0];
         int prev2 = 0;
 
-        for(int i=1;i<n;i++){
+        for(int i=1;i<=n;i++){
             int pick = arr[i];
             if(i>1) pick += prev2;
 
