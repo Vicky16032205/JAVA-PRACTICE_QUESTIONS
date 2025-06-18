@@ -10,6 +10,8 @@ public class max_non_adj_sum {
 
         int[] dp2 = new int[arr.length];
         System.out.println("Memoization answer: " + TabuFindMaxSum(arr,arr.length-1,dp2));
+
+        System.out.println("Space optimized answer: " + spaceOptimize(arr, arr.length-1));
     }
 
     public static int findMaxSum(int[] arr, int n){
@@ -43,5 +45,22 @@ public class max_non_adj_sum {
             dp[i] = Math.max(pick, not_pick);
         }
         return dp[n];
+    }
+
+    public static int spaceOptimize(int[] arr, int n){
+        int prev = arr[0];
+        int prev2 = 0;
+
+        for(int i=1;i<n;i++){
+            int pick = arr[i];
+            if(i>1) pick += prev2;
+
+            int not_pick = 0 + prev;
+
+            int curr = Math.max(pick, not_pick);
+            prev2 = prev;
+            prev = curr;
+        }
+        return prev;
     }
 }
