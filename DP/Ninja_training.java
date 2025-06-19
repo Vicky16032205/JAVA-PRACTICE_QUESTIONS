@@ -12,6 +12,31 @@ public class Ninja_training {
 
         int[][] dp2 = new int[arr.length][4];
         System.out.println(maximumPointsTabu(arr,arr.length,dp2));
+
+        int[] prev = new int[4];
+        System.out.println(spaceOptimize(arr,arr.length,prev));
+    }
+
+    private static int spaceOptimize(int[][] arr, int n, int[] prev) {
+        prev[0] = Math.max(arr[0][1] , arr[0][2]);
+        prev[1] = Math.max(arr[0][0] , arr[0][2]);
+        prev[2] = Math.max(arr[0][1] , arr[0][0]);
+        prev[3] = Math.max(arr[0][0] , Math.max(arr[0][1] , arr[0][2]));
+
+        for(int day=1;day<n;day++){
+            int[] temp = new int[4];
+            for(int last = 0;last<4;last++){
+
+                for(int task = 0;task < 3;task++){
+                    if(task != last){
+                        int point = arr[day][task] + prev[task];
+                        temp[last] = Math.max(temp[day] , point);
+                    }
+                }
+            }
+            prev = temp;
+        }
+        return prev[3];
     }
 
     private static int maximumPointsTabu(int[][] arr, int n, int[][] dp) {
