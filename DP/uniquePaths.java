@@ -8,6 +8,26 @@ public class uniquePaths {
 
         int[][] dp = new int[row+1][col+1];
         System.out.println("Memoization method answer: " +countWays(1,1,row,col,dp));
+
+        int[][] dp2 = new int[row][col];
+        System.out.println("Tabulation method answer: " +TabulationWays(row,col,dp2));
+    }
+
+    private static int TabulationWays(int er, int ec, int[][] dp) {
+        for(int i=0;i<er;i++){
+            for(int j=0;j<ec;j++){
+                if(i==0 && j==0) dp[0][0] = 1;
+                else{
+                    int right = 0;
+                    int down = 0;
+                    if(j>0) right = dp[i][j-1] ;
+                    if(i>0) down = dp[i-1][j] ;
+
+                    dp[i][j] = right+down;
+                }
+            }
+        }
+        return dp[er-1][ec-1];
     }
 
     private static int countWays(int sr, int sc, int er, int ec, int[][] dp) {
