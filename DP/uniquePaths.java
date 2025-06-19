@@ -11,6 +11,28 @@ public class uniquePaths {
 
         int[][] dp2 = new int[row][col];
         System.out.println("Tabulation method answer: " +TabulationWays(row,col,dp2));
+
+        System.out.println("Space optimized answer: " +spaceOptimized(row,col));
+    }
+
+    private static int spaceOptimized(int er, int ec){
+        int[] prev = new int[ec];
+
+        for(int i=0;i<er;i++){
+            int[] curr = new int[ec];
+            for(int j=0;j<ec;j++){
+                if(i==0 && j==0) curr[j] = 1;
+                else{
+                    int right = 0;
+                    int down = 0;
+                    if(j>0) right = curr[j-1];
+                    if(i>0) down = prev[j];
+                    curr[j] = right+down;
+                }
+            }
+            prev = curr;
+        }
+        return prev[ec-1];
     }
 
     private static int TabulationWays(int er, int ec, int[][] dp) {
