@@ -13,6 +13,32 @@ public class minPathSum {
         for(int[] row: dp2) Arrays.fill(row, -1);
         System.out.println("Using Memoization: " + Memoization(grid,dp2,grid.length-1,grid[0].length-1));
 
+
+        System.out.println("Space Optimized solution: " + spaceOptimized(grid));
+
+    }
+
+    public static int spaceOptimized(int[][] grid){
+        int n = grid.length;
+        int m = grid[0].length;
+
+        int[] prev = new int[m];
+
+        for(int i=0;i<n;i++){
+            int[] curr = new int[m];
+            for(int j=0;j<m;j++){
+                if(i==0 && j==0) curr[0] = grid[0][0];
+                else{
+                    int up =Integer.MAX_VALUE;
+                    int left = Integer.MAX_VALUE;
+                    if(i>0) up = prev[j];
+                    if(j>0) left = curr[j-1];
+                    curr[j] = grid[i][j] + Math.min(up,left);
+                }
+            }
+            prev = curr;
+        }
+        return prev[m-1];
     }
 
     public static int Memoization(int[][]grid, int[][] dp, int sr, int sc){
