@@ -36,7 +36,28 @@ public class MinFallPathSum {
                         {6,5,4}, 
                         {7,8,9}
                     };
+        System.out.println("Recursive Answer: "+ recursive(matrix));
+        System.out.println("Memoization Answer: " + minFallingPathSum(matrix));
+    }
 
-        System.out.println(minFallingPathSum(matrix));
+    public static int recursive(int[][] matrix) {
+        int mini = Integer.MAX_VALUE;
+
+        for(int i=0;i<matrix.length;i++){
+            int num = Sum(matrix, 0, i);
+            mini = Math.min(mini,num);
+        }
+        return mini;
+    }
+
+    public static int Sum(int[][] matrix, int row, int col){
+        if(row<0 || row>matrix.length-1 || col<0 || col>matrix.length-1) return Integer.MAX_VALUE;
+        if(row == matrix.length-1) return matrix[row][col];
+
+        int downback = Sum(matrix, row+1, col-1);
+        int down = Sum(matrix, row+1, col);
+        int downfront = Sum(matrix, row+1, col+1);
+
+        return (matrix[row][col] + Math.min(downback, Math.min(down, downfront)));
     }
 }
