@@ -38,6 +38,7 @@ public class MinFallPathSum {
                     };
         System.out.println("Recursive Answer: "+ recursive(matrix));
         System.out.println("Memoization Answer: " + minFallingPathSum(matrix));
+        System.out.println("Tabulation Answer: "+FallingPathSum(matrix));
     }
 
     public static int recursive(int[][] matrix) {
@@ -59,5 +60,36 @@ public class MinFallPathSum {
         int downfront = Sum(matrix, row+1, col+1);
 
         return (matrix[row][col] + Math.min(downback, Math.min(down, downfront)));
+    }
+
+
+
+    public static int FallingPathSum(int[][] matrix) {
+        int[][] dp = new int[matrix.length][matrix[0].length];
+        return pathSum2(matrix, matrix.length, matrix[0].length, dp);
+    }
+
+    public static int pathSum2(int[][] matrix, int row, int col, int[][] dp){
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(i==0) dp[i][j] = matrix[i][j];
+                else{
+                    int downback = Integer.MAX_VALUE;
+                    int down = Integer.MAX_VALUE;
+                    int downfront = Integer.MAX_VALUE;
+
+                    if(i-1 > -1 && j+1 < col) downback = dp[i-1][j+1];
+                    if(i-1 > -1) down = dp[i-1][j];
+                    if(i-1 > -1 && j-1 > -1) downfront = dp[i-1][j-1];
+
+                    dp[i][j] = (matrix[i][j] + Math.min(downback, Math.min(down, downfront)));
+                }
+            }
+        }
+        int mini = Integer.MAX_VALUE;
+        for(int j=0;j<matrix[0].length;j++){
+            mini = Math.min(mini, dp[row-1][j]);
+        }
+        return mini;
     }
 }
