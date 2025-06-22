@@ -6,24 +6,22 @@ public class subsetSumEqualsTarget {
         int target = 4;
         System.out.println("Recursive solution: " +targetPresent(arr,arr.length-1,target));
 
-        boolean[] dp = new boolean[arr.length];
+        Boolean[][] dp = new Boolean[arr.length][target+1];
         System.out.println("Memoization solution: " +target(arr,arr.length-1,target,dp));
     }
 
-    private static boolean target(int[] arr, int n, int target, boolean[] dp) {
-        if(n==0){
-            return arr[0] == target;
-        }
+    private static boolean target(int[] arr, int n, int target, Boolean[][] dp) {
         if(target == 0) return true;
+        if(n==0) return arr[0] == target;
 
-        if(dp[n] != false) return true;
+        if(dp[n][target] != null) return dp[n][target];
 
-        boolean not_take = targetPresent(arr, n-1, target);
+        boolean not_take = target(arr, n-1, target,dp);
         boolean take = false;
         if(arr[n] <= target){
-            take = targetPresent(arr, n-1, target-arr[n]);
+            take = target(arr, n-1, target-arr[n],dp);
         }
-        return dp[n] = not_take || take;
+        return dp[n][target] = not_take || take;
     }
 
     private static boolean targetPresent(int[] arr, int n, int target) {
