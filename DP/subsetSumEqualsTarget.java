@@ -11,11 +11,34 @@ public class subsetSumEqualsTarget {
 
         boolean[][] dp2 = new boolean[arr.length][target+1];
         System.out.println("Tabulation solution: " +Present(arr,arr.length,target,dp2));
+
+        System.out.println("Space optimized answer: "+ spaceOptimize(arr,arr.length,target));
+    }
+
+    private static boolean spaceOptimize(int[] arr, int n, int k) {
+        boolean[] prev = new boolean[k+1];
+        boolean[] curr = new boolean[k+1];
+
+        prev[0] = true;
+        curr[0] = true;
+        prev[arr[0]] = true;
+
+        for(int idx=1;idx<n;idx++){
+            for(int target = 1;target<=k;target++){
+                boolean not_take = prev[target];
+                boolean take = false;
+                if(arr[idx] <= target) take = prev[target-arr[idx]];
+
+                curr[target] = take || not_take;
+            }
+            prev = curr;
+        }
+        return prev[k];
     }
 
     private static boolean Present(int[] arr, int n, int target, boolean[][] dp) {
         for(int i=0;i<n;i++) dp[i][0] = true;
-        
+
         dp[0][arr[0]] = true;
 
         for(int i=1;i<n;i++){
