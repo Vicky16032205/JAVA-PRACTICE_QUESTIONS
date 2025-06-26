@@ -5,34 +5,34 @@ public class partitionEqualSubsetSum {
         int[] arr = {2,3,3,3,4,7};
         System.out.println("Recursive solution: " + sumPossible1(arr,arr.length));
         System.out.println("Memoization solution: " + sumPossible2(arr,arr.length));
-        // System.out.println("Tabulation solution: " + sumPossible3(arr,arr.length));
+        System.out.println("Tabulation solution: " + sumPossible3(arr,arr.length));
     }
 
-    // public static boolean sumPossible3(int[] arr, int n){
-    //     int totalSum = 0;
-    //     for(int i=0;i<n;i++){
-    //         totalSum += arr[i];
-    //     }
-    //     if(totalSum % 2 != 0) return false;
-    //     boolean[][] dp = new boolean[n][totalSum/2+1];
-    //     return tabulate(totalSum/2 , arr, n, dp);
-    // }
+    public static boolean sumPossible3(int[] arr, int n){
+        int totalSum = 0;
+        for(int i=0;i<n;i++){
+            totalSum += arr[i];
+        }
+        if(totalSum % 2 != 0) return false;
+        boolean[][] dp = new boolean[n][totalSum/2+1];
+        return tabulate(totalSum/2 , arr, n, dp);
+    }
 
-    // private static boolean tabulate(int k, int[] arr, int n, boolean[][] dp) {
-    //     for(int i=0;i<n;i++) dp[i][0] = true;
-    //     dp[0][arr[0]] = true;
+    private static boolean tabulate(int k, int[] arr, int n, boolean[][] dp) {
+        for(int i=0;i<n;i++) dp[i][0] = true;
+        dp[0][arr[0]] = true;
 
-    //     for(int idx=1;idx<n;idx++){
-    //         for(int target =1 ; target <=k;target++){
-    //             boolean not_take = dp[idx-1][target];
-    //             boolean take = false;
-    //             if(target >= arr[idx]) take = dp[idx-1][target-arr[idx]];
+        for(int idx=1;idx<n;idx++){
+            for(int target =1 ; target <=k;target++){
+                boolean not_take = dp[idx-1][target];
+                boolean take = false;
+                if(target >= arr[idx]) take = dp[idx-1][target-arr[idx]];
 
-    //             dp[idx][target] = take || not_take;
-    //         }
-    //     }
-    //     return dp[n-1][k];
-    // }
+                dp[idx][target] = take || not_take;
+            }
+        }
+        return dp[n-1][k];
+    }
 
     public static boolean sumPossible1(int[] arr, int n){
         int totalSum = 0;
