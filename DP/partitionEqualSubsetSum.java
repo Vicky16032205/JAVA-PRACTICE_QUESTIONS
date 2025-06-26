@@ -2,10 +2,39 @@ package DP;
 
 public class partitionEqualSubsetSum {
     public static void main(String[] args) {
-        int[] arr = {2,3,3,3,4,7};
+        int[] arr = {2,3,3,3,4,5};
         System.out.println("Recursive solution: " + sumPossible1(arr,arr.length));
         System.out.println("Memoization solution: " + sumPossible2(arr,arr.length));
         System.out.println("Tabulation solution: " + sumPossible3(arr,arr.length));
+        System.out.println("Space Optimized solution: " + sumPossible4(arr,arr.length));
+    }
+
+    private static boolean sumPossible4(int[] arr, int n) {
+        int totalSum = 0;
+        for(int i=0;i<n;i++){
+            totalSum += arr[i];
+        }
+        if(totalSum % 2 != 0) return false;
+        return spaceOptimize(totalSum/2 , n, arr);
+    }
+
+    private static boolean spaceOptimize(int k, int n, int[] arr) {
+        boolean[] prev = new boolean[k+1];
+        boolean[] curr = new boolean[k+1];
+        prev[0] = curr[0] = true;
+        prev[arr[0]] = true;
+
+        for(int idx=1;idx<n;idx++){
+            for(int target = 1;target<=k;target++){
+                boolean not_take = prev[target];
+                boolean take = false;
+                if(target >= arr[idx]) take = prev[target-arr[idx]];
+
+                curr[target] = take || not_take;
+            }
+            prev = curr;
+        }
+        return prev[k];
     }
 
     public static boolean sumPossible3(int[] arr, int n){
