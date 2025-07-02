@@ -2,6 +2,7 @@ package DP;
 
 import java.util.*;
 
+@SuppressWarnings("unused")
 public class coinsChangeI {
     public static void main(String[] args) {
         int[] coins = {1,2,5};
