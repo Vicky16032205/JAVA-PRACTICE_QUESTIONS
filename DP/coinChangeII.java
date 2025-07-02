@@ -1,7 +1,5 @@
 package DP;
 
-import java.util.Arrays;
-
 public class coinChangeII {
     public static void main(String[] args) {
         int[] coins = {1,2,5};
