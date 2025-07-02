@@ -22,8 +22,28 @@ public class unboundedKnapsack {
         return space(val.length, capacity, val , wt);
     }
 
-    static int space(int n, int W, int[] val, int[] wt){
+    static int moreOptimized(int n, int W, int[] val, int[] wt){
+        int[] prev = new int[W+1];
         
+        for(int i=0;i<=W;i++){
+            if(wt[0] <= i) prev[i] = (i/wt[0])*val[0];
+            else prev[i] = 0;
+        }
+
+        for(int i=1;i<n;i++){
+            for(int target=0;target<=W;target++){
+                int not_pick = 0 + prev[target];
+                int pick = Integer.MIN_VALUE;
+                if(wt[i] <= target) pick = val[i] + prev[target-wt[i]];
+                
+                prev[target] = Math.max(not_pick, pick);
+            }
+        }
+        
+        return prev[W];
+    }
+
+    static int space(int n, int W, int[] val, int[] wt){
         int[] prev = new int[W+1];
         
         for(int i=0;i<=W;i++){
