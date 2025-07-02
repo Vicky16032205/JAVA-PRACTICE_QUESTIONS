@@ -19,7 +19,8 @@ public class unboundedKnapsack {
         // int[][] dp2 = new int[val.length][capacity+1];
         // return tabulation(val.length, capacity , val, wt, dp2);
 
-        return space(val.length, capacity, val , wt);
+        // return space(val.length, capacity, val , wt);
+        return moreOptimized(val.length, capacity, val , wt);
     }
 
     static int moreOptimized(int n, int W, int[] val, int[] wt){
