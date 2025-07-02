@@ -4,12 +4,36 @@ import java.util.*;
 public class Knapsack {
 
     static int knapsack(int W, int val[], int wt[]) {
-        int[][] dp = new int[val.length+1][W+1];
-        for(int[] row: dp) Arrays.fill(row, -1);
-        return maximum(val.length-1, W, val, wt, dp);
+        // int[][] dp = new int[val.length+1][W+1];
+        // for(int[] row: dp) Arrays.fill(row, -1);
+        // return maximum(val.length-1, W, val, wt, dp);
 
         // int[][] dp2 = new int[val.length][W + 1];
         // return tabulate(val.length, W, val, wt, dp2);
+
+        return spaceOptimized(val.length, W, val, wt);
+    }
+
+    static int spaceOptimized(int n, int W, int[] val, int[] wt){
+        int[] prev = new int[W+1];
+        for (int target = 0; target <= W; target++) {
+            if (wt[0] <= target) prev[target] = val[0];
+            else prev[target] = 0;
+        }
+
+        for(int i=1;i<n;i++){
+            int[] curr = new int[W+1];
+            for(int target=0;target<=W;target++){
+                int not_pick = prev[target];
+                int pick = 0;
+
+                if (wt[i] <= target) pick = val[i] + prev[target - wt[i]];
+
+                curr[target] = Math.max(not_pick, pick);
+            }
+            prev = curr;
+        }
+        return prev[W];
     }
 
     static int maximum(int n, int W, int[] val, int[] wt, int[][] dp){
