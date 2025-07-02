@@ -1,6 +1,6 @@
 package DP;
 
-import java.util.*;
+// import java.util.*;
 
 public class unboundedKnapsack {
     public static void main(String[] args) {
@@ -12,9 +12,31 @@ public class unboundedKnapsack {
     }
 
     static int knapsack(int val[], int wt[], int capacity){
-        int[][] dp = new int[val.length+1][capacity+1];
-        for(int[] row : dp) Arrays.fill(row, -1);
-        return repetition(val.length-1, capacity, val, wt, dp);
+        // int[][] dp = new int[val.length+1][capacity+1];
+        // for(int[] row : dp) Arrays.fill(row, -1);
+        // return repetition(val.length-1, capacity, val, wt, dp);
+
+        int[][] dp2 = new int[val.length][capacity+1];
+        return tabulation(val.length, capacity , val, wt, dp2);
+    }
+
+    static int tabulation(int n, int W, int[] val, int[] wt, int[][] dp){
+        for(int i=0;i<=W;i++){
+            if(wt[0] <= i) dp[0][i] = (i/wt[0])*val[0];
+            else dp[0][i] = 0;
+        }
+        
+        for(int i=1;i<n;i++){
+            for(int target=0;target<=W;target++){
+                int not_pick = 0 + dp[i-1][target];
+                int pick = Integer.MIN_VALUE;
+                if(wt[i] <= target) pick = val[i] + dp[i][target-wt[i]];
+                
+                dp[i][target] = Math.max(not_pick, pick);
+            }
+        }
+        
+        return dp[n-1][W];
     }
 
     static int repetition(int n, int W, int[] val, int[] wt, int[][] dp){
