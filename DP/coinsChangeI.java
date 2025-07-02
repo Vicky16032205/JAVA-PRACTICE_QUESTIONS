@@ -10,17 +10,17 @@ public class coinsChangeI {
     }
 
     public static int coinChange(int[] coins, int amount) {
-        int[][] dp = new int[coins.length][amount+1];
+        // int[][] dp = new int[coins.length][amount+1];
         // for(int[] row : dp) Arrays.fill(row, -1);
         // int ans = changes(coins.length-1, amount, coins,dp);
-        int ans = tabulation(coins.length, amount, coins,dp);
-        // int ans = spaceOptimize(coins.length,amount,coins);
+        // int ans = tabulation(coins.length, amount, coins,dp);
+        int ans = spaceOptimize(coins.length,amount,coins);
 
         if(ans >= Integer.MAX_VALUE - 100) return -1;
         return ans;
     }
 
-    public int spaceOptimize(int n, int T, int[] arr){
+    public static int spaceOptimize(int n, int T, int[] arr){
         int[] prev = new int[T+1];
 
         for(int i=0;i<=T;i++){
