@@ -11,9 +11,9 @@ public class coinsChangeI {
 
     public static int coinChange(int[] coins, int amount) {
         int[][] dp = new int[coins.length][amount+1];
-        for(int[] row : dp) Arrays.fill(row, -1);
-        int ans = changes(coins.length-1, amount, coins,dp);
-        // int ans = tabulation(coins.length, amount, coins,dp);
+        // for(int[] row : dp) Arrays.fill(row, -1);
+        // int ans = changes(coins.length-1, amount, coins,dp);
+        int ans = tabulation(coins.length, amount, coins,dp);
         // int ans = spaceOptimize(coins.length,amount,coins);
 
         if(ans >= Integer.MAX_VALUE - 100) return -1;
