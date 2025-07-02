@@ -14,9 +14,33 @@ public class coinChangeII {
         // for(int[] row : dp) Arrays.fill(row, -1);
 
         // int ans = changes(coins.length-1, amount, coins,dp);
-        int[][] dp2 = new int[coins.length][amount+1];
-        int ans = changesTabu(coins.length, amount, coins,dp2);
+        // int[][] dp2 = new int[coins.length][amount+1];
+        // int ans = changesTabu(coins.length, amount, coins,dp2);
+        int ans = spaceOptimize(coins.length, amount, coins);
         return ans;
+    }
+
+    public static int spaceOptimize(int n, int target, int[] arr){
+        int[] prev = new int[target+1];
+
+        for(int i=0;i<=target;i++){
+            if(i%arr[0] == 0) prev[i] = 1;
+            else prev[i] = 0;
+        }
+
+        for(int i=1;i<n;i++){
+            int[] curr = new int[target+1];
+
+            for(int T=0;T<=target;T++){
+                int not_pick = prev[T];
+                int pick = 0;
+                if(arr[i] <= T) pick = curr[T-arr[i]];
+
+                curr[T] =(not_pick + pick);
+            }
+            prev = curr;
+        }
+        return prev[target];
     }
 
     public static int changesTabu(int n, int target, int[] arr, int[][] dp){
