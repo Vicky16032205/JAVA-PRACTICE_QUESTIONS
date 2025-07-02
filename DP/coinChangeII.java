@@ -10,11 +10,31 @@ public class coinChangeII {
     }
 
     public static int change(int amount, int[] coins) {
-        int[][] dp = new int[coins.length+1][amount+1];
-        for(int[] row : dp) Arrays.fill(row, -1);
+        // int[][] dp = new int[coins.length+1][amount+1];
+        // for(int[] row : dp) Arrays.fill(row, -1);
 
-        int ans = changes(coins.length-1, amount, coins,dp);
+        // int ans = changes(coins.length-1, amount, coins,dp);
+        int[][] dp2 = new int[coins.length][amount+1];
+        int ans = changesTabu(coins.length, amount, coins,dp2);
         return ans;
+    }
+
+    public static int changesTabu(int n, int target, int[] arr, int[][] dp){
+        for(int i=0;i<=target;i++){
+            if(i%arr[0] == 0) dp[0][i] = 1;
+            else dp[0][i] = 0;
+        }
+
+        for(int i=1;i<n;i++){
+            for(int T=0;T<=target;T++){
+                int not_pick = dp[i-1][T];
+                int pick = 0;
+                if(arr[i] <= T) pick = dp[i][T-arr[i]];
+
+                dp[i][T] =(not_pick + pick);
+            }
+        }
+        return dp[n-1][target];
     }
 
     public static int changes(int n, int target, int[] arr, int[][] dp){
