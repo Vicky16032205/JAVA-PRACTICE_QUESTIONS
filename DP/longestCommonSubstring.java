@@ -3,8 +3,8 @@ package DP;
 public class longestCommonSubstring {
     static int ans =0;
     public static void main(String[] args) {
-        String s = "abcd";
-        String t = "abzd";
+        String s = "abzd";
+        String t = "abcd";
 
         System.out.println("Recursive answer " + common(s.length()-1 , t.length()-1 , s , t , 0));
         int[][] dp = new int[s.length()+1][t.length()+1];
@@ -12,12 +12,33 @@ public class longestCommonSubstring {
 
         int[][] dp2 = new int[s.length()+1][t.length()+1];
         System.out.println("Tabulation answer " + tabulation(s.length() , t.length() , s , t ,dp2));
+
+        System.out.println("Space optimization answer " + space(s.length() , t.length() , s , t));
     }
 
-    public static int tabulation(int idx1, int idx2,  String s, String t, int[][] dp){
-        for(int j=0;j<=idx2;j++){
-            dp[0][j] = 0;
+    public static int space(int idx1, int idx2,  String s, String t){
+        int[] prev = new int[idx1+1];
+        for(int i=0;i<=idx1;i++){
+            prev[0] = 0;
         }
+        int res = 0;
+        for(int i=1;i<=idx1;i++){
+            int[] curr = new int[idx2+1];
+
+            for(int j=1;j<=idx2;j++){
+                if(s.charAt(i-1) == t.charAt(j-1)){
+                    curr[j] = prev[j-1] + 1;
+                    res = Math.max(res,curr[j]);
+                }
+                else curr[j] = 0;
+            }
+            prev = curr;
+        }
+        return res;
+    }
+
+
+    public static int tabulation(int idx1, int idx2,  String s, String t, int[][] dp){
         for(int i=0;i<=idx1;i++){
             dp[i][0] = 0;
         }
