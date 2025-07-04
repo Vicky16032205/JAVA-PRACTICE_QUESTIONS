@@ -18,9 +18,6 @@ public class longestCommonSubstring {
 
     public static int space(int idx1, int idx2,  String s, String t){
         int[] prev = new int[idx1+1];
-        for(int i=0;i<=idx1;i++){
-            prev[0] = 0;
-        }
         int res = 0;
         for(int i=1;i<=idx1;i++){
             int[] curr = new int[idx2+1];
