@@ -20,7 +20,7 @@ public class minimumInsertionsToMakePalindrome {
        System.out.println("Minimum Insertions required using tabulation = "+ (s.length()- ans2));
 
        int ans3 = space(s.length() , t.length() , s , t);
-       System.out.println("Minimum Insertions required using tabulation = "+ (s.length()- ans3));
+       System.out.println("Minimum Insertions required using space optimization = "+ (s.length()- ans3));
     }
 
     public static int space(int idx1 , int idx2 , String s, String t ){
