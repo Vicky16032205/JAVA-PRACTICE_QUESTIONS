@@ -18,6 +18,27 @@ public class minimumInsertionsToMakePalindrome {
        int[][] dp2 = new int[s.length()+1][t.length()+1];
        int ans2 = tabulation(s.length() , t.length() , s , t , dp2);
        System.out.println("Minimum Insertions required using tabulation = "+ (s.length()- ans2));
+
+       int ans3 = space(s.length() , t.length() , s , t);
+       System.out.println("Minimum Insertions required using tabulation = "+ (s.length()- ans3));
+    }
+
+    public static int space(int idx1 , int idx2 , String s, String t ){
+        int[] prev = new int[idx1+1];
+
+        for(int i=0;i<idx1;i++){
+            prev[i] = 0;
+        }
+
+        for(int i=1;i<=idx1;i++){
+            int[] curr = new int[idx2+1];
+            for(int j=1;j<=idx2;j++){
+                if(s.charAt(i-1) == t.charAt(j-1)) curr[j] = 1 + prev[j-1];
+                else curr[j] = Math.max(prev[j], curr[j-1]);
+            }
+            prev = curr;
+        }
+        return prev[s.length()];
     }
 
     public static int tabulation(int idx1, int idx2 , String s  , String t , int[][] dp){
