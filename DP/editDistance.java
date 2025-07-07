@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class editDistance {
     public static void main(String[] args) {
-        String s = "intention";
-        String t = "execution";
+        String s = "horse";
+        String t = "ros";
 
         System.out.println("minimum operations required to convert string (s) to string (t) is : ==>");
         System.out.println("Using recursion: "+recursion(s.length()-1, t.length()-1 , s, t));
@@ -16,6 +16,35 @@ public class editDistance {
 
         int[][] dp2 = new int[s.length()+1][t.length()+1];
         System.out.println("Using tabulation: "+ tabulation(s.length(), t.length() , s, t , dp2));
+
+        System.out.println("Space optimization: "+ space(s.length(), t.length() , s, t));
+    }
+
+    public static int space(int idx1, int idx2, String s , String t){
+        int[] prev = new int[idx2+1];
+        for(int i=0;i<=idx2;i++){
+            prev[i] = i;
+        }
+
+        for(int i=1;i<=idx1;i++){
+            int[] curr = new int[idx1+1];
+            curr[0] = i;
+
+            for(int j=1;j<=idx2;j++){
+                if(s.charAt(i-1) == t.charAt(j-1)){
+                    curr[j] = prev[j-1];
+                }
+                else{
+                    int insert = prev[j];
+                    int delete =curr[j-1];
+                    int replace = prev[j-1];
+
+                    curr[j] = 1 + Math.min(insert , Math.min(delete , replace));
+                }
+            }
+            prev = curr;
+        }
+        return prev[idx2];
     }
 
     public static int tabulation(int idx1 , int idx2 , String s , String t , int[][] dp){
