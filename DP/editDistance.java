@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class editDistance {
     public static void main(String[] args) {
-        String s = "horse";
-        String t = "ros";
+        String s = "a";
+        String t = "ab";
 
         System.out.println("minimum operations required to convert string (s) to string (t) is : ==>");
         System.out.println("Using recursion: "+recursion(s.length()-1, t.length()-1 , s, t));
@@ -27,7 +27,7 @@ public class editDistance {
         }
 
         for(int i=1;i<=idx1;i++){
-            int[] curr = new int[idx1+1];
+            int[] curr = new int[idx2+1];
             curr[0] = i;
 
             for(int j=1;j<=idx2;j++){
