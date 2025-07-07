@@ -16,7 +16,18 @@ public class distinctSubsequences {
         int[][] dp2 = new int[s.length()+1][t.length()+1];
         System.out.println("Total iterative matching using tabulation: "+ tabulation(s.length(), t.length(),s,t, dp2));
 
-        System.out.println("Total matching by optimizing space: "+ spaceOptimization(s.length(), t.length(),s,t));
+        System.out.println("Total matching by optimizing space: "+ moreSpaceOptimization(s.length(), t.length(),s,t));
+    }
+
+    public static int moreSpaceOptimization(int idx1 ,int idx2 ,String s ,String t){
+        int[] prev = new int[idx2+1];
+        prev[0] = 1;
+        for(int i=1;i<=idx1;i++){
+            for(int j=idx2;j>=1;j--){
+                if(s.charAt(i-1) == t.charAt(j-1)) prev[j] = prev[j-1] + prev[j];
+            }
+        }
+        return prev[idx2];
     }
 
     public static int spaceOptimization(int idx1 ,int idx2 ,String s ,String t){
