@@ -10,12 +10,24 @@ public class editDistance {
         System.out.println("minimum operations required to convert string (s) to string (t) is : ==>");
         System.out.println("Using recursion: "+recursion(s.length()-1, t.length()-1 , s, t));
 
-        // int[][] dp = new int[s.length()+1][t.length()+1];
-        // for(int[] row : dp) Arrays.fill(row, -1);
-        // System.out.println("Using memoization: "+ memoization(s.length()-1, t.length()-1 , s, t , dp));
+        int[][] dp = new int[s.length()+1][t.length()+1];
+        for(int[] row : dp) Arrays.fill(row, -1);
+        System.out.println("Using memoization: "+ memoization(s.length()-1, t.length()-1 , s, t , dp));
     }
 
+        public static int memoization(int idx1 , int idx2 , String s , String t , int[][] dp){
+        if(idx1<0) return idx2+1;
+        if(idx2<0) return idx1+1;
+        if(dp[idx1][idx2] != -1) return dp[idx1][idx2];
+        
+        if(s.charAt(idx1) == t.charAt(idx2)) return dp[idx1][idx2] = memoization(idx1-1 , idx2-1 , s, t , dp);
 
+        int insert = memoization(idx1-1 , idx2 , s, t , dp);
+        int delete = memoization(idx1 , idx2-1 , s, t, dp);
+        int replace = memoization(idx1-1 , idx2-1 , s, t , dp);
+
+        return dp[idx1][idx2] = 1 + Math.min(insert , Math.min(delete , replace));
+    }
 
     public static int recursion(int idx1, int idx2, String s , String t){
         if(idx1 < 0) return idx2+1;
