@@ -19,6 +19,32 @@ class buyAndSellStocksIII {
 
         int[][][] dp2 = new int[prices.length+1][2][3];
         System.out.println("Using tabulation: " + tabulation(prices, dp2));
+        
+        System.out.println("optimizing space: " + space(prices));
+    }
+
+    private static int space(int[] prices){
+        int n = prices.length;
+        int[][] after = new int[2][3];
+
+        for(int idx = n-1;idx>=0;idx--){
+            int[][] curr = new int[2][3];
+            for(int buy=0;buy<=1;buy++){
+                for(int transactions=1;transactions<=2;transactions++){
+                    int profit = 0;
+                    if(buy==1){
+                        profit = Math.max(-prices[idx] + after[0][transactions] , after[1][transactions] );
+                    }
+                    else{
+                        profit = Math.max(prices[idx] + after[1][transactions-1] , after[0][transactions]);
+                    }
+
+                    curr[buy][transactions] = profit;
+                }
+            }
+            after = curr;
+        }
+        return after[1][2];
     }
 
     private static int tabulation(int[] prices, int[][][] dp) {
