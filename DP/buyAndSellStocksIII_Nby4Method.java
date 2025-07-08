@@ -15,6 +15,29 @@ public class buyAndSellStocksIII_Nby4Method {
 
         int[][] dp2 = new int[prices.length+1][5];
         System.out.println("Tabulation: "+tabulation(prices, dp2));
+
+        System.out.println("Space Optimization: "+space(prices));
+    }
+
+    public static int space(int[] prices){
+        int n= prices.length;
+        int[] after = new int[5];
+
+        for(int idx=n-1;idx>=0;idx--){
+            int[] curr = new int[5];
+            for(int transactions =0;transactions<4;transactions++){
+                int profit =0;
+                if(transactions%2==0){
+                    profit = Math.max((-prices[idx] + after[transactions+1]) , after[transactions]);
+                }  
+                else{
+                    profit = Math.max((prices[idx] + after[transactions+1]) , after[transactions]);
+                }
+                curr[transactions] = profit;
+            }
+            after = curr;
+        }
+        return after[0];
     }
 
     private static int tabulation(int[] prices, int[][] dp){
