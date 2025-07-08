@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class buyAndSellStockesII {
     public static void main(String[] args) {
-        int[] prices = {7,6,4,3,1};
+        int[] prices = {7,1,5,3,6,4};
         System.out.println("Buy and Sell stocks II problem of leetcode ways to solve the problem ==>");
         int[][] dp = new int[prices.length+1][2];
         for(int[] row: dp) Arrays.fill(row,-1);
@@ -12,6 +12,24 @@ public class buyAndSellStockesII {
 
         int[][] dp2 = new int[prices.length+1][2];
         System.out.println("Using Tabulation: "+tabulation(prices, dp2));
+
+        System.out.println("Optimizing space complexity: "+spaceOptimization(prices));
+    }
+
+    public static int spaceOptimization(int[] prices){
+        int n = prices.length;
+
+        int aheadBuy , aheadNotBuy , currBuy , currNotBuy = 0;
+        aheadBuy = aheadNotBuy = 0;
+        for(int i=n-1;i>=0;i--){
+            currNotBuy = Math.max(prices[i] + aheadBuy , aheadNotBuy);
+            currBuy = Math.max(-prices[i] + aheadNotBuy , aheadBuy);
+
+            aheadBuy = currBuy;
+            aheadNotBuy = currNotBuy;
+        }
+
+        return aheadBuy;
     }
 
     public static int profitMade(int day , int buy , int[] prices, int[][] dp){
