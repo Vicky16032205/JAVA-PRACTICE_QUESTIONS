@@ -39,9 +39,36 @@ public class StringToInteger {
         }
     }
 
+
+    public static int myAtoi2(String s) {
+        int n= s.length();
+        int i=0, sign =1;
+        long res = 0;
+
+        while(i<n && s.charAt(i) ==' '){
+            i++;
+            continue;
+        }
+
+        if(i<n && (s.charAt(i)=='+' || s.charAt(i)=='-')){
+            sign = (s.charAt(i)=='-') ? -1: 1;
+            i++;
+        }
+
+        while(i<n && Character.isDigit(s.charAt(i))){
+            res = res*10 + (s.charAt(i)-'0');
+            if(sign == 1 && res > Integer.MAX_VALUE) return Integer.MAX_VALUE;
+            if(sign == -1 && -res < Integer.MIN_VALUE) return Integer.MIN_VALUE;
+            i++;
+        }
+
+        return (int)(res*sign);
+    }
+
     public static void main(String[] args) {
         String s = "1337c0d3";
         System.out.println(myAtoi(s));
+        System.out.println(myAtoi2(s));
         // s can be "42", " -042", "0-1", "words and 987", "+-12", etc.,.
     }
 }
