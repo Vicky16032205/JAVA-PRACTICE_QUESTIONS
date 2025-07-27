@@ -9,7 +9,6 @@ public class cycles_undirect {
         System.out.println(isCycle(edges , V));
     }
 
-    @SuppressWarnings("unchecked")
     public static boolean isCycle(int[][] edges , int V){
         // implement code here.
         ArrayList<Integer>[] graph = new ArrayList[V];

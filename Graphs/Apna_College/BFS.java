@@ -65,7 +65,6 @@ public class BFS {
         }
     }
 
-    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
 
         // initializing the array of arraylists having number of vertices stored while its initialization.

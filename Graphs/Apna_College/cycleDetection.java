@@ -43,7 +43,6 @@ public class cycleDetection {
         return false;
     }
 
-    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         int v =4;
         ArrayList<Edge>[] graph = new ArrayList[v];

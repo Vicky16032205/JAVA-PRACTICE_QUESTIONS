@@ -61,7 +61,6 @@ public class DFS {
     // then calling of the vertices one taken as source node or make a loop to iterate over all the vertices if all vertices are not connected and
     // some of them are broken aka "Disconnected Components."
 
-    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         int v = 7;
         ArrayList<Edge>[] graph = new ArrayList[v];

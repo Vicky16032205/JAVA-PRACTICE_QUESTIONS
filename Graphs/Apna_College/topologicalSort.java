@@ -38,7 +38,6 @@ public class topologicalSort {
         stack.push(curr);
     }
 
-    @SuppressWarnings("unchecked")
     public static void main(String[] args){
         int v = 6;
         ArrayList<Edge>[] graph = new ArrayList[v];

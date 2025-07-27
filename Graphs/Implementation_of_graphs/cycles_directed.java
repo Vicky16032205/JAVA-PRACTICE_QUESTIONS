@@ -10,7 +10,6 @@ public class cycles_directed {
         System.out.println(isCycle(edges , V));
     }
 
-    @SuppressWarnings("unchecked")
     public static boolean isCycle(int[][] edges , int V){
         ArrayList<Integer>[] graph = new ArrayList[V];
         for(int i=0;i<V;i++) graph[i] = new ArrayList<>();

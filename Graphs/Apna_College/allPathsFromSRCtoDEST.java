@@ -63,7 +63,6 @@ public class allPathsFromSRCtoDEST {
         }
     }
 
-    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         int v = 7;
         ArrayList<Edge>[] graph = new ArrayList[v];

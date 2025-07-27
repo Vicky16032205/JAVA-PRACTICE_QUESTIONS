@@ -28,7 +28,6 @@ public class Printgraph {
         }
     }
 
-    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         int v = 4;
 
