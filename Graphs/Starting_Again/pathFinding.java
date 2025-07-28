@@ -46,7 +46,7 @@ public class pathFinding {
 
     public static void pathFind(ArrayList<Edge>[] graph, int curr, int end, boolean[] vis, String s){
         if(end == curr){
-            System.out.println(s+" "+end);
+            System.out.println("Paths:  " +s+" "+end);
             return;
         }
         vis[curr] = true;
