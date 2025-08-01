@@ -32,12 +32,12 @@ public class Distance_of_nearestCell_having_one {
                 }
             }
         }
+
+        int[] dirX = {-1,1,0,0};
+        int[] dirY = {0,0,-1,1};
         
         while(!queue.isEmpty()){
             Pair curr = queue.remove();
-            
-            int[] dirX = {-1,1,0,0};
-            int[] dirY = {0,0,-1,1};
             
             for(int idx=0;idx<4;idx++){
                 int x= dirX[idx] + curr.i;
