@@ -6,12 +6,10 @@ public class Distance_of_nearestCell_having_one {
     public static class Pair{
         int i;
         int j;
-        int dist;
         
-        public Pair(int x, int y, int count){
+        public Pair(int x, int y){
             this.i = x;
             this.j = y;
-            this.dist = count;
         }
     }
 
@@ -26,9 +24,8 @@ public class Distance_of_nearestCell_having_one {
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 if(grid[i][j] == 1){
-                    queue.add(new Pair(i,j,0));
+                    queue.add(new Pair(i,j));
                     vis[i][j] = true;
-                    counting[i][j] = 0;
                 }
             }
         }
@@ -42,12 +39,11 @@ public class Distance_of_nearestCell_having_one {
             for(int idx=0;idx<4;idx++){
                 int x= dirX[idx] + curr.i;
                 int y= dirY[idx] + curr.j;
-                int dist = curr.dist;
                 
                 if(possible(x,y,grid,vis)){
-                    counting[x][y] = dist+1;
+                    counting[x][y] = counting[curr.i][curr.j]+1;
                     vis[x][y] = true;
-                    queue.add(new Pair(x,y,dist+1));
+                    queue.add(new Pair(x,y));
                 }
             }
         }
