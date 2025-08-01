@@ -14,7 +14,7 @@ public class Distance_of_nearestCell_having_one {
     }
 
     public static int[][] nearest(int[][] grid) {
-        Queue<Pair> queue = new LinkedList<>();
+        Queue<Pair> queue = new ArrayDeque();
         int n = grid.length;
         int m = grid[0].length;
         
