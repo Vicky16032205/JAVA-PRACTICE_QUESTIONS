@@ -15,24 +15,51 @@ public class Shortest_Path_Weighted_undirected_graph {
     }
 
     public static void main(String[] args) {
-        int[][] edges = {{0, 1, 4}, {0, 2, 8}, {1, 4, 6}, {2,3,2}, {3, 4, 10}};
-        int n = 5;
-        int m = 5;
+        // Test Case 1: Original Example
+        int[][] edges1 = {{0, 1, 4}, {0, 2, 8}, {1, 4, 6}, {2,3,2}, {3, 4, 10}};
+        runTest(5, 5, edges1, "Test Case 1");
 
-        int[] list = new int[n];
-        list = shortestPath(n, m, edges);
+        // Test Case 2: Linear Graph
+        int[][] edges2 = {{0, 1, 1}, {1, 2, 1}, {2, 3, 1}, {3, 4, 1}};
+        runTest(5, 4, edges2, "Test Case 2");
+
+        // Test Case 3: Star Graph
+        int[][] edges3 = {{0, 1, 2}, {0, 2, 2}, {0, 3, 2}, {0, 4, 2}};
+        runTest(5, 4, edges3, "Test Case 3");
+
+        // Test Case 4: Disconnected Graph (no path from 0 to 4)
+        int[][] edges4 = {{0, 1, 1}, {2, 3, 1}, {3, 4, 1}};
+        runTest(5, 3, edges4, "Test Case 4");
+
+        // Test Case 5: Multiple Paths, Different Weights
+        int[][] edges5 = {{0, 1, 1}, {1, 4, 10}, {0, 2, 2}, {2, 3, 2}, {3, 4, 2}};
+        runTest(5, 5, edges5, "Test Case 5");
+    }
+
+    public static void runTest(int n, int m, int[][] edges, String testName) {
+        int[] list = shortestPath(n, m, edges);
 
         List<Integer> res = new ArrayList<>();
         int j = n-1;
-        while(j != 0){
+        boolean pathExists = true;
+        while(j != 0) {
+            if (list[j] == -1) {
+                pathExists = false;
+                break;
+            }
             res.add(j);
             j = list[j];
         }
-        res.add(0);
-
-        for(int i=res.size()-1;i>=0;i--){
-            System.out.print(res.get(i)+" ");
+        if (pathExists) {
+            res.add(0);
+            System.out.print(testName + " Shortest Path: ");
+            for(int i=res.size()-1;i>=0;i--){
+                System.out.print(res.get(i)+" ");
+            }
+        } else {
+            System.out.print(testName + " Shortest Path: No path exists");
         }
+        System.out.println();
     }
 
     public static List<List<Pair>> makeTree(int n, int edges[][]){
